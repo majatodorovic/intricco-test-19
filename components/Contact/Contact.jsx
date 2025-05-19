@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   GoogleReCaptchaProvider as Provider,
   GoogleReCaptcha as ReCaptcha,
@@ -7,13 +7,13 @@ import {
 import { post as POST } from "@/api/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useSearchParams } from "next/navigation";
+
 
 const Contact = ({ staticData, defaultMessage }) => {
   const [token, setToken] = useState(null);
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
-  const searchParams = useSearchParams();
+  
 
   const requiredFields = ["customer_name", "phone", "email", "message"];
 
