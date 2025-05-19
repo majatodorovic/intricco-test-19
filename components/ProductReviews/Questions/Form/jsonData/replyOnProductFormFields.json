@@ -1,0 +1,26 @@
+[
+    {
+      "id": "nameID",
+      "name": "name",
+      "type": "text",
+      "placeholder": "Your Name",
+      "required": true,
+      "className": "md:col-span-1"
+    },
+    {
+      "id": "emailID",
+      "name": "email",
+      "type": "email",
+      "placeholder": "Your Email",
+      "required": true,
+      "className": "md:col-span-1"
+    },
+    {
+      "id": "commentID",
+      "name": "comment",
+      "type": "textarea",
+      "placeholder": "Write your reply...",
+      "required": true
+    }
+  ]
+  

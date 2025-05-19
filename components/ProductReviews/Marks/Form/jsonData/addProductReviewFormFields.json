@@ -1,0 +1,57 @@
+[
+  {
+    "id": "nameID",
+    "name": "name",
+    "type": "text",
+    "placeholder": "Ime",
+    "required": true,
+    "className": "md:col-span-1"
+  },
+  {
+    "id": "emailID",
+    "name": "email",
+    "type": "email",
+    "placeholder": "Email",
+    "required": true,
+    "className": "md:col-span-1"
+  },
+  {
+    "id": "ratingID",
+    "name": "rating",
+    "type": "rating",
+    "placeholder": "Rating",
+    "required": true
+  },
+
+  {
+    "id": "messageID",
+    "name": "message",
+    "type": "textarea",
+    "placeholder": "Poruka",
+    "required": true
+  },
+  {
+    "id": "mark_is_anonymousID",
+    "name": "is_anonymous",
+    "type": "checkbox",
+    "placeholder": "Želim da budem anoniman",
+    "required": false,
+    "className": "col-span-full"
+  },
+  {
+    "id": "mark_imageID",
+    "name": "mark_images",
+    "type": "file",
+    "placeholder": "Postavi sliku",
+    "required": false,
+    "className": "md:col-span-1"
+  },
+  {
+    "id": "mark_videoID",
+    "name": "mark_videos",
+    "type": "file",
+    "placeholder": "Postavi video",
+    "required": false,
+    "className": "md:col-span-1"
+  }
+]

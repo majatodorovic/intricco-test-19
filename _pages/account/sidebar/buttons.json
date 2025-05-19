@@ -1,0 +1,42 @@
+[
+  {
+    "id": "PregledID",
+    "title": "Pregled",
+    "tab": "dashboard"
+  },
+  {
+    "id": "ProfilID",
+    "title": "Profil",
+    "tab": "basic"
+  },
+  {
+    "id": "PlacanjeID",
+    "title": "Plaćanja",
+    "tab": "payments"
+  },
+  {
+    "id": "DostavaID",
+    "title": "Dostava",
+    "tab": "shipping"
+  },
+  {
+    "id": "PrethodnekupovineID",
+    "title": "Prethodne kupovine",
+    "tab": "orders"
+  },
+  {
+    "id": "DigitalnimaterijalID",
+    "title": "Digitalni proizvodi",
+    "tab": "digital-product"
+  },
+  {
+    "id": "IzmenalozinkeID",
+    "title": "Izmena lozinke",
+    "tab": "password-change"
+  },
+  {
+    "id": "OdjavaID",
+    "title": "Odjava",
+    "tab": "logout"
+  }
+]

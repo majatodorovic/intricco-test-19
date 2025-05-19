@@ -1,0 +1,40 @@
+[
+  {
+    "id": "ratingID",
+    "name": "rating",
+    "type": "rating",
+    "placeholder": "Rating",
+    "required": true
+  },
+
+  {
+    "id": "messageID",
+    "name": "message",
+    "type": "textarea",
+    "placeholder": "Your message",
+    "required": true
+  },
+  {
+    "id": "is_anonymousID",
+    "name": "is_anonymous",
+    "type": "checkbox",
+    "placeholder": "I want to be anonymous",
+    "required": false
+  },
+  {
+    "id": "imageID",
+    "name": "mark_images",
+    "type": "file",
+    "placeholder": "Upload an image",
+    "required": false,
+    "className": "md:col-span-1"
+  },
+  {
+    "id": "videoID",
+    "name": "mark_videos",
+    "type": "file",
+    "placeholder": "Upload a video",
+    "required": false,
+    "className": "md:col-span-1"
+  }
+]
