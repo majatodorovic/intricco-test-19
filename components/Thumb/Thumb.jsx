@@ -9,7 +9,6 @@ import { convertHttpToHttps } from "@/helpers/convertHttpToHttps";
 import ProductPrice from "@/components/ProductPrice/ProductPrice";
 import { useProductThumb } from "@/hooks/ecommerce.hooks";
 import { getColorByColorName } from "@/helpers/getColorByColorName";
-import { truncateText } from "@/helpers/truncateText";
 import noImage from "../../public/images/placeholder.webp";
 import Link from "next/link";
 
@@ -205,13 +204,7 @@ export const Thumb = forwardRef(({ slug, categoryId }, ref) => {
             className="relative cursor-pointer max-sm:line-clamp-1"
           >
             <h3
-              className="text-left text-xl font-light"
-              style={{
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
-              }}
+              className="line-clamp-2 text-left text-xl font-light"
               title={product?.basic_data?.name}
             >
               {product?.basic_data?.name}
