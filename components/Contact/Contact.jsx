@@ -8,6 +8,8 @@ import { post as POST } from "@/api/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useSearchParams } from "next/navigation";
+import { pushToDataLayer } from "@/_services/data-layer";
+
 
 const Contact = ({ staticData, defaultMessage }) => {
   const [token, setToken] = useState(null);
@@ -69,6 +71,7 @@ const Contact = ({ staticData, defaultMessage }) => {
         gcaptcha: token,
       }).then((res) => {
         if (res?.code === 200) {
+          pushToDataLayer("contact", { email: formData.email });
           toast.success("Uspešno ste poslali poruku!", {
             position: "top-center",
             autoClose: 2000,

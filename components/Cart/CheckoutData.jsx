@@ -428,7 +428,7 @@ export const CheckoutData = ({
             }
           }}
         >
-          {isPending ? "OBRADA..." : "Potvrdi porudžbinu"}
+          {isPending ? "OBRADA..." : "Potvrdi porudžbenicu"}
         </button>
         <FreeDeliveryScale summary={summary} />
       </div>

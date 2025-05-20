@@ -16,7 +16,6 @@ const Kontakt = async ({ searchParams }) => {
 
   const { proizvodIme, sifra, atribut } = searchParams;
 
-
   const keyGenerator = (prefix) => {
     return `${prefix}-${Math.random().toString(36)}`;
   };
@@ -26,12 +25,11 @@ const Kontakt = async ({ searchParams }) => {
   let schema = generateOrganizationSchema(base_url);
 
   const defaultMessage =
-  proizvodIme && sifra
-    ? `Poštovani, \n\nMolim Vas da na datu e-mail adresu pošaljete ponudu za proizvod ${proizvodIme} - ${sifra}. ${
-        atribut ? atribut : ""
-      }.\n\nHvala.`
-    : null;
-
+    proizvodIme && sifra
+      ? `Poštovani, \n\nMolim Vas da na datu e-mail adresu pošaljete ponudu za proizvod ${proizvodIme} - ${sifra}. ${
+          atribut ? atribut : ""
+        }.\n\nHvala.`
+      : null;
 
   return (
     <>

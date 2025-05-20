@@ -43,7 +43,7 @@ const AddToCart = ({
           // pushToDataLayer("add_to_cart", productItem, productQuantity);
         } else {
           router.push(
-            `/kontakt?proizvodIme=${productItem?.basic_data.name}&sifra=${productItem?.basic_data?.sku.split(" ")[0]}`
+            `/kontakt?proizvodIme=${productItem?.basic_data.name}&sifra=${productItem?.basic_data?.sku.split(" ")[0]}`,
           );
         }
         break;
@@ -64,9 +64,8 @@ const AddToCart = ({
             // pushToDataLayer("add_to_cart", productVariant, productQuantity);
           } else {
             router.push(
-              `/kontakt?proizvodIme=${productItem?.basic_data.name}&sifra=${productVariant?.basic_data?.sku.split(" ")[0]}&atribut=${productVariant?.basic_data?.attributes_text}`
+              `/kontakt?proizvodIme=${productItem?.basic_data.name}&sifra=${productVariant?.basic_data?.sku.split(" ")[0]}&atribut=${productVariant?.basic_data?.attributes_text}`,
             );
-            
           }
         } else {
           let text = cartTextBySelectedVariant({ selectedOptions, product });
