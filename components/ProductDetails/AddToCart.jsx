@@ -20,9 +20,6 @@ const AddToCart = ({
 
   const productItem = product?.data?.item;
 
-  const sku =
-    productVariant?.basic_data?.sku || productItem?.basic_data?.sku || "";
-
   const isAddableToCart = checkIsAddableToCart({
     price: productVariant?.id ? productVariant?.price : productItem?.price,
     inventory: productVariant?.id
@@ -33,49 +30,45 @@ const AddToCart = ({
   const handleAddToCart = () => {
     switch (product?.product_type) {
       case "single": {
-        const is_addable = checkIsAddableToCart({
+        let is_addable = checkIsAddableToCart({
           price: productItem?.price,
           inventory: productItem?.inventory,
         });
         if (is_addable?.addable) {
           addToCart({
-            id: sku, // koristi se šifra proizvoda umesto ID-a
+            id: productItem?.basic_data?.id_product,
             quantity: productQuantity,
           });
           return true;
+          // pushToDataLayer("add_to_cart", productItem, productQuantity);
         } else {
           router.push(
-            `/kontakt?proizvodIme=${encodeURIComponent(
-              productItem?.basic_data?.name || "",
-            )}&proizvodSifra=${encodeURIComponent(sku)}`,
+            `/kontakt?proizvodIme=${productItem?.basic_data.name}&proizvodId=${productItem?.id}`,
           );
         }
         break;
       }
       case "variant": {
         if (productVariant?.id) {
-          const is_addable = checkIsAddableToCart({
+          let is_addable = checkIsAddableToCart({
             price: productVariant?.price,
             inventory: productVariant?.inventory,
           });
 
           if (is_addable?.addable) {
             addToCart({
-              id: sku, // koristi se šifra varijante umesto ID-a
+              id: productVariant?.id,
               quantity: productQuantity,
             });
             return true;
+            // pushToDataLayer("add_to_cart", productVariant, productQuantity);
           } else {
             router.push(
-              `/kontakt?proizvodIme=${encodeURIComponent(
-                productItem?.basic_data?.name || "",
-              )}&proizvodSifra=${encodeURIComponent(sku)}&atribut=${encodeURIComponent(
-                productVariant?.basic_data?.attributes_text || "",
-              )}`,
+              `/kontakt?proizvodIme=${productItem?.basic_data.name}&proizvodId=${productVariant?.id}&atribut=${productVariant?.basic_data.attributes_text}`,
             );
           }
         } else {
-          const text = cartTextBySelectedVariant({ selectedOptions, product });
+          let text = cartTextBySelectedVariant({ selectedOptions, product });
           setTempError(text);
         }
         break;

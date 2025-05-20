@@ -14,10 +14,7 @@ const Kontakt = async ({ searchParams }) => {
   const data = await getData();
   const staticData = data?.items?.map((items) => items);
 
-  const { proizvodIme, proizvodSifra, atribut } = searchParams;
-
-  // IZMJENA: Izvlačimo samo deo šifre pre prve razmaka, da ne bi bio deo veličine
-  const sifraBezVelicine = proizvodSifra ? proizvodSifra.split(" ")[0] : "";
+  const { proizvodIme, proizvodId, atribut } = searchParams;
 
   const keyGenerator = (prefix) => {
     return `${prefix}-${Math.random().toString(36)}`;
@@ -27,10 +24,9 @@ const Kontakt = async ({ searchParams }) => {
   let base_url = all_headers.get("x-base_url");
   let schema = generateOrganizationSchema(base_url);
 
-  // IZMJENA: koristimo sifraBezVelicine umesto proizvodSifra da izbegnemo dupliranje veličine
   const defaultMessage =
-    proizvodIme && proizvodSifra
-      ? `Poštovani, \n\nMolim Vas da na datu e-mail adresu pošaljete ponudu za proizvod ${proizvodIme} - ${sifraBezVelicine}. ${
+    proizvodIme && proizvodId
+      ? `Poštovani, \n\nMolim Vas da na datu e-mail adresu pošaljete ponudu za proizvod ${proizvodIme} - ${proizvodId}. ${
           atribut ? atribut : ""
         }.\n\nHvala.`
       : null;

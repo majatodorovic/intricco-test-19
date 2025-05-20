@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   GoogleReCaptchaProvider as Provider,
   GoogleReCaptcha as ReCaptcha,
@@ -7,13 +7,23 @@ import {
 import { post as POST } from "@/api/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useSearchParams } from "next/navigation";
 
 const Contact = ({ staticData, defaultMessage }) => {
   const [token, setToken] = useState(null);
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
-  
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const productId = searchParams.get("id");
+    if (productId) {
+      setFormData((prev) => ({
+        ...prev,
+        message: `Potrebne informacije za proizvod ${productId}`,
+      }));
+    }
+  }, []);
 
   const requiredFields = ["customer_name", "phone", "email", "message"];
 
