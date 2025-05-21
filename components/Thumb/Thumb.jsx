@@ -205,7 +205,11 @@ export const Thumb = forwardRef(({ slug, categoryId }, ref) => {
           >
             <h3
               className="line-clamp-2 text-left text-xl font-light"
-              title={product?.basic_data?.name}
+              title={
+                product?.basic_data?.name.length > 63
+                  ? product?.basic_data?.name
+                  : ""
+              }
             >
               {product?.basic_data?.name}
             </h3>
