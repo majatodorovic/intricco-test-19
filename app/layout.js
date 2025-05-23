@@ -88,20 +88,20 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-  title: "Početna | Intricco Underwear",
+  title: "Sve kategorije | Intricco Underwear",
   description: "Dobrodošli na Intricco Underwear Online Shop",
   alternates: {
-    canonical: "https://croonus.com",
+    canonical: "https://www.intriccounderwear.rs/",
   },
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "Intricco Underwear - Farmerke, Muške farmerke, Muška odeća",
+    title: "Sve kategorije - Intricco Underwear",
     description: "Dobrodošli na Intricco Underwear Online Shop",
     type: "website",
-    url: "https://croonus.com",
+    url: "https://www.intriccounderwear.rs/",
     image: "https://croonus.com/images/logo.png",
     site_name: "croonus.com",
     locale: "sr_RS",
