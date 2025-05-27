@@ -23,7 +23,7 @@ import fields from "./shipping.json";
 import Spinner from "@/components/UI/Spinner";
 import { userContext } from "@/context/userContext";
 import noImage from "../../public/images/placeholder.webp";
-
+import { pushToDataLayer } from "@/_services/data-layer";
 import FreeDeliveryScale from "./FreeDeliveryScale";
 
 export const CheckoutData = ({
@@ -258,7 +258,6 @@ export const CheckoutData = ({
   }, [selected?.use_same_data]);
 
   const show_options = process.env.SHOW_CHECKOUT_SHIPPING_FORM;
-
   return (
     <div className={`mt-5 grid grid-cols-6 gap-10 2xl:grid-cols-5 2xl:gap-16`}>
       <div className={`col-span-6 flex flex-col lg:col-span-3`}>
@@ -312,7 +311,7 @@ export const CheckoutData = ({
           {(items ?? [])?.map(
             ({
               product: {
-                basic_data: { id_product, name, sku },
+                basic_data: { id_product, name, sku, brand_name },
                 price,
                 inventory,
                 image,
@@ -325,7 +324,9 @@ export const CheckoutData = ({
             }) => (
               <CheckoutItems
                 behaviours={checkout}
+                brand_name={brand_name}
                 key={id_product}
+                id_product={id_product}
                 image={image}
                 sku={sku}
                 inventory={inventory}
@@ -422,7 +423,13 @@ export const CheckoutData = ({
             });
             setErrorsTmp(err);
             if (err?.length === 0) {
-              checkOut();
+              pushToDataLayer("begin_checkout", items);
+
+              const timeout = setTimeout(() => {
+                checkOut();
+              }, 100);
+
+              return () => clearTimeout(timeout);
             } else {
               window.scrollTo(0, 0);
             }
@@ -465,6 +472,13 @@ export const CheckoutData = ({
               <button
                 className="rounded-lg bg-[#E5E5E5] px-5 py-2 hover:bg-green-500 hover:text-white max-md:text-[15px]"
                 onClick={() => {
+                  pushToDataLayer("remove_from_cart", {
+                    price: sureCheck.price,
+                    id: sureCheck.id,
+                    name: sureCheck.name,
+                    brand_name: sureCheck.brand_name,
+                    productQuantity: Number(sureCheck.productQuantity),
+                  });
                   removeFromCart({ id: removeId });
                 }}
               >

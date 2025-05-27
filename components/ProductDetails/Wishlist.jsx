@@ -5,6 +5,7 @@ import {
   useIsInWishlist,
   useRemoveFromWishlist,
 } from "@/hooks/ecommerce.hooks";
+import { pushToDataLayer } from "@/_services/data-layer";
 
 const Wishlist = ({ product }) => {
   const { mutate: addToWishlist, isSuccess: isAdded } = useAddToWishlist();
@@ -27,15 +28,17 @@ const Wishlist = ({ product }) => {
     <div
       className={`${
         !isInWishlist && "hover:bg-red-500"
-      }  scale-90 group cursor-pointer rounded-full p-2`}
+      } group scale-90 cursor-pointer rounded-full p-2`}
       onClick={() => {
         if (isInWishlist) {
           removeFromWishlist({ id: wishlist_id });
+          pushToDataLayer("remove_from_wishlist", product);
         } else {
           addToWishlist({
             id: product?.data?.item?.basic_data?.id_product,
             name: product?.data?.item?.basic_data?.name,
           });
+          pushToDataLayer("add_to_wishlist", product);
         }
       }}
     >
@@ -45,7 +48,7 @@ const Wishlist = ({ product }) => {
           alt="wishlist"
           width={39}
           height={39}
-          className={`w-10 h-auto`}
+          className={`h-auto w-10`}
         />
       ) : (
         <Image
@@ -53,7 +56,7 @@ const Wishlist = ({ product }) => {
           alt="wishlist"
           width={39}
           height={39}
-          className={`favorite w-10 h-auto ${
+          className={`favorite h-auto w-10 ${
             !isInWishlist && "group-hover:invert"
           }`}
         />

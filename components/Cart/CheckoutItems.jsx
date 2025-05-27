@@ -20,6 +20,8 @@ const CheckoutItems = ({
   inventory,
   refreshCart,
   quantity,
+  brand_name,
+  id_product,
   refreshSummary,
   isClosed,
   cart_item_id,
@@ -70,7 +72,13 @@ const CheckoutItems = ({
             isClosed && !inventory?.inventory_defined && "text-white"
           } text-lg hover:text-red-500`}
           onClick={() => {
-            setSureCheck(true);
+            setSureCheck({
+              id: id_product,
+              price: price,
+              name,
+              productQuantity: quantity,
+              brand_name,
+            });
             setIsClosed(false);
             setRemoveId(cart_item_id);
           }}

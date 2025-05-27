@@ -13,6 +13,7 @@ import noImage from "../../public/images/placeholder.webp";
 import { useQuery } from "@tanstack/react-query";
 import { get as GET } from "@/api/api";
 import Link from "next/link";
+import { pushToDataLayer } from "@/_services/data-layer";
 
 export const ThumbByViewport = forwardRef(({ id, apiLink }, ref) => {
   const { data: product } = useQuery({
@@ -122,7 +123,13 @@ export const ThumbByViewport = forwardRef(({ id, apiLink }, ref) => {
 
             return (
               <SwiperSlide key={`${id}-${index}`}>
-                <Link href={link} className="cursor-pointer">
+                <Link
+                  href={link}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    pushToDataLayer("view_item", product);
+                  }}
+                >
                   <Image
                     ref={ref}
                     src={url ? convertHttpToHttps(url) : noImage}

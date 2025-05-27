@@ -11,6 +11,7 @@ import { useProductThumb } from "@/hooks/ecommerce.hooks";
 import { getColorByColorName } from "@/helpers/getColorByColorName";
 import noImage from "../../public/images/placeholder.webp";
 import Link from "next/link";
+import { pushToDataLayer } from "@/_services/data-layer";
 
 export const Thumb = forwardRef(({ slug, categoryId }, ref) => {
   const { data: product } = useProductThumb({
@@ -18,7 +19,6 @@ export const Thumb = forwardRef(({ slug, categoryId }, ref) => {
     id: slug,
     categoryId: categoryId ?? "*",
   });
-
   const [swiper, setSwiper] = useState(null);
 
   const variantOptionColor = product?.variant_options?.find((variant) => {
@@ -116,7 +116,13 @@ export const Thumb = forwardRef(({ slug, categoryId }, ref) => {
 
             return (
               <SwiperSlide key={`${slug}-${index}`}>
-                <Link href={link} className="cursor-pointer">
+                <Link
+                  href={link}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    pushToDataLayer("view_item", product);
+                  }}
+                >
                   <Image
                     ref={ref}
                     src={url ? convertHttpToHttps(url) : noImage}

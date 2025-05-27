@@ -12,6 +12,7 @@ import { getColorByColorName } from "@/helpers/getColorByColorName";
 import { truncateText } from "@/helpers/truncateText";
 import noImage from "../../public/images/placeholder.webp";
 import Link from "next/link";
+import { pushToDataLayer } from "@/_services/data-layer";
 
 export const ThumbForHome = ({ slug, categoryId }) => {
   const { data: product } = useProductThumb({
@@ -117,7 +118,13 @@ export const ThumbForHome = ({ slug, categoryId }) => {
 
             return (
               <SwiperSlide key={`${slug}-${index}`}>
-                <Link href={link} className="cursor-pointer">
+                <Link
+                  href={link}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    pushToDataLayer("view_item", product);
+                  }}
+                >
                   <Image
                     src={url ? convertHttpToHttps(url) : noImage}
                     alt={product?.basic_data?.name}

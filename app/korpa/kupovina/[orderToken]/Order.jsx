@@ -1,10 +1,11 @@
 "use client";
-
+import { useEffect } from "react";
 import { useOrder } from "@/hooks/ecommerce.hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { currencyFormat } from "@/helpers/functions";
 import { notFound } from "next/navigation";
+import { pushToDataLayer } from "@/_services/data-layer";
 
 const Order = ({ orderToken, className }) => {
   const { data, isSuccess } = useOrder({ order_token: orderToken });
@@ -23,6 +24,7 @@ const Order = ({ orderToken, className }) => {
       case isSuccess && !credit_card:
         return (
           <Success
+            data={data}
             items={items}
             order={order}
             deliveries={deliveries}
@@ -49,12 +51,17 @@ const Order = ({ orderToken, className }) => {
 export default Order;
 
 const Success = ({
+  data,
   order: { slug, payment_method_name },
   deliveries,
   items,
   shipping_address,
   className,
 }) => {
+  useEffect(() => {
+    pushToDataLayer("purchase", data);
+  }, []);
+
   return (
     <>
       <div className={`sectionWidth flex flex-col items-center justify-center`}>

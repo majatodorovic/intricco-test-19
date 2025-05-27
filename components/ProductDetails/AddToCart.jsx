@@ -4,6 +4,7 @@ import {
   checkIsAddableToCart,
   cartTextBySelectedVariant,
 } from "./helpers/addToCart";
+import { pushToDataLayer } from "@/_services/data-layer";
 
 const AddToCart = ({
   displayComponent,
@@ -39,8 +40,8 @@ const AddToCart = ({
             id: productItem?.basic_data?.id_product,
             quantity: productQuantity,
           });
+          pushToDataLayer("add_to_cart", productItem, productQuantity);
           return true;
-          // pushToDataLayer("add_to_cart", productItem, productQuantity);
         } else {
           router.push(
             `/kontakt?proizvodIme=${productItem?.basic_data.name}&sifra=${productItem?.basic_data?.sku.split(" ")[0]}`,
@@ -60,8 +61,8 @@ const AddToCart = ({
               id: productVariant?.id,
               quantity: productQuantity,
             });
+            pushToDataLayer("add_to_cart", productVariant, productQuantity);
             return true;
-            // pushToDataLayer("add_to_cart", productVariant, productQuantity);
           } else {
             router.push(
               `/kontakt?proizvodIme=${productItem?.basic_data.name}&sifra=${productVariant?.basic_data?.sku.split(" ")[0]}&atribut=${productVariant?.basic_data?.attributes_text}`,

@@ -91,7 +91,7 @@ export const metadata = {
   title: "Sve kategorije | Intricco Underwear",
   description: "Dobrodošli na Intricco Underwear Online Shop",
   alternates: {
-    canonical: "https://www.intriccounderwear.rs/",
+    canonical: "https://www.intriccounderwear.rs/sve-kategorije",
   },
   robots: {
     index: true,
@@ -101,7 +101,7 @@ export const metadata = {
     title: "Sve kategorije - Intricco Underwear",
     description: "Dobrodošli na Intricco Underwear Online Shop",
     type: "website",
-    url: "https://www.intriccounderwear.rs/",
+    url: "https://www.intriccounderwear.rs/sve-kategorije",
     image: "https://croonus.com/images/logo.png",
     site_name: "croonus.com",
     locale: "sr_RS",
